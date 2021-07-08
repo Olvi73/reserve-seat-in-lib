@@ -79,6 +79,15 @@ def reserve_a_seat(content):
     pre_reserve_prefix="https://wechat.v2.traceint.com/index.php/prereserve/save/"
     
     cnt=0
+    while(1):
+        t = time.time() + 0.1
+        tt=time.localtime(t)
+        if(tt.tm_hour>=21 and tt.tm_min>=59 and tt.tm_sec>=50):
+            print("开始抢座！")
+            break
+        else:
+            print("等待中。。。当前时间：%d：%d：%d"%(tt.tm_hour,tt.tm_min,tt.tm_sec))
+            time.sleep(2)
     flag=1
     while(flag):
         response = rs.get(url=pre_seatmap_page,
